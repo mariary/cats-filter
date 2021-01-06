@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    4
+    <link rel="stylesheet" href="range.css">
+    <script>
+
+        function Kind(n) {
+            let btn = document.body.querySelectorAll('.btn-kind');
+            let types = document.body.querySelectorAll('.type');
+            let item = document.body.querySelectorAll('.item');
+            let kind = btn[n - 1].outerText.toLowerCase();
+            let array = [];
+            for (j = 0; j < item.length; j++) {
+                item[j].classList.add('hidden');
+            }
+
+            for (i = 0; i < btn.length; i++) {
+                btn[i].classList.remove('btn-kind-active');
+            }
+            for (i = 0; i < types.length; i++) {
+                array[i] = types[i].outerText;
+                let p = array[i].indexOf(':');
+                array[i] = array[i].slice(p + 1).replace(/\s+/g, '').toLowerCase();
+                if (array[i] === kind) {
+                    item[i].classList.remove('hidden');
+                }
+            }
+
+            if (kind === 'все') {
+                for (i = 0; i < types.length; i++) {
+                    item[i].classList.toggle('hidden');
+                }
+            }
+            btn[n - 1].classList.toggle('btn-kind-active');
+
+        };
+
+        function Age() {
+            let min = document.querySelector('.slider-values .value-1').innerHTML;
+            let max = document.querySelector('.slider-values .value-2').innerHTML;
+            let age = document.body.querySelectorAll('.age');
+            let item = document.body.querySelectorAll('.item');
+            let array = [];
+            for (j = 0; j < item.length; j++) {
+                item[j].classList.add('hidden');
+            }
+
+            for (i = 0; i < age.length; i++) {
+                array[i] = age[i].outerText;
+                let p = array[i].indexOf(':');
+                array[i] = array[i].slice(p + 1).replace(/\s+/g, '').toLowerCase();
+                let month = 'мес';
+                if (array[i].includes(month) === true && min == 0) {
+                    item[i].classList.remove('hidden');
+                } else if (array[i].includes(month) === false) {
+                    let w = array[i][0]
+                    if (w >= min && w <= max) {
+                        item[i].classList.remove('hidden');
+                    }
+                }
+            }
+        }
+
+        function AllFilter() {
+
+            Age();
+            let item = document.body.querySelectorAll('.item');
+            let types = document.body.querySelectorAll('.type');
+            let btn = document.querySelector('.btn-kind-active');
+            let kind = btn.innerText.toLowerCase();
+            let array = [];
+            for (i = 0; i < item.length; i++) {
+                if (item[i].classList.contains('hidden') === false) {
+                    array[i] = types[i].outerText;
+                    let p = array[i].indexOf(':');
+                    array[i] = array[i].slice(p + 1).replace(/\s+/g, '').toLowerCase();
+                    if (array[i] === kind) {
+                        item[i].classList.remove('hidden');
+                    }
+                    else {
+                        item[i].classList.add('hidden');
+                    }
+                } else {
+                    continue;
+                }
+
+            }
+            console.log(array)
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <img src="content/logo.png">
+</div>
+<div class="container">
+
+    <div class="wrapper">
+        <div class="list">
+            <div class="item" id="item">
+                <div class="main">
+                    <img src="content/1.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Борис</div>
+                        <div class="age">Возраст: 3 года</div>
+                        <div class="type">Порода: нет</div>
+                        <div class="disease">Болезни: Глухота</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description">Самый лучший в мире
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/2.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Мурзик</div>
+                        <div class="age">Возраст: 2 года</div>
+                        <div class="type">Порода: нет</div>
+                        <div class="disease">Болезни: нет</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">Самый красивый общительный
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/3.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Сеня</div>
+                        <div class="age">Возраст: 3 месяца</div>
+                        <div class="type">Порода: сиамская</div>
+                        <div class="disease">Болезни: нет</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">Такооой умный
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/4.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Варя</div>
+                        <div class="age">Возраст: 1 год</div>
+                        <div class="type">Порода: сфинкс</div>
+                        <div class="disease">Болезни: нет</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">Этот кот все на свете знает
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/5.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Лео</div>
+                        <div class="age">Возраст: 7 месяцев</div>
+                        <div class="type">Порода: нет</div>
+                        <div class="disease">Болезни: нет</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">Кот поможет справиться с депрессией
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/6.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Ник</div>
+                        <div class="age">Возраст: 3 года</div>
+                        <div class="type">Порода: нет</div>
+                        <div class="disease">Болезни: Глухота</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">Просто котик хороший милый без комментариев
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/7.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Демик</div>
+                        <div class="age">Возраст: 2 года</div>
+                        <div class="type">Порода: Персидская</div>
+                        <div class="disease">Болезни: нет</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">пупсик
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="main">
+                    <img src="content/8.jpg" alt="">
+                    <div class="about">
+                        <div class="name">Иван</div>
+                        <div class="age">Возраст: 8 месяцев</div>
+                        <div class="type">Порода: сибирская</div>
+                        <div class="disease">Болезни: Грусть</div>
+                        <div class="status">Статус: Ищет хозяина</div>
+                    </div>
+                </div>
+                <div class="description ">и еще один пупсик для количества
+                    <p>тут можно еще чет написать интересное про этого красивого котика</p>
+                </div>
+            </div>
+        </div>
+        <div class="filter">
+            <div class="age1">
+                <h2>Возраст</h2>
+                <div class="container1">
+                    <div class="slider-container">
+                        <div class="track">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="thumb-1" onmouseup="Age()">
+                            <div class="thumb-indicator-1"></div>
+                        </div>
+                        <div class="thumb-2" onmouseup="Age()">
+                            <div class="thumb-indicator-2"></div>
+                        </div>
+                    </div>
+                    <div class="slider-values">
+                        от
+                        <div class="value-1">0</div>
+                        до
+                        <div class="value-2">0</div>
+                        лет
+                    </div>
+                </div>
+            </div>
+            <div class="kind">
+                <h2>Порода</h2>
+                <button class="btn-kind" onclick="Kind(1)" value="1">Сфинкс</button>
+                <button class="btn-kind" onclick="Kind(2)" value="2">Сибирская</button>
+                <button class="btn-kind" onclick="Kind(3)" value="3">Персидская</button>
+                <button class="btn-kind" onclick="Kind(4)" value="4">Сиамская</button>
+                <button class="btn-kind" onclick="Kind(5)" value="5">Нет</button>
+                <button class="btn-kind" onclick="Kind(6)" value="6">Все</button>
+            </div>
+            <button class="btn-filter" onclick="AllFilter();">Применить оба фильтра</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Напишите нам:</p>
+        <div class="mails">
+            <a href="" class="mail">hellohowareyou@mail.ru</a>
+            <a href="" class="mail">hehelol@gmail.com</a>
+        </div>
+        <div class="company">
+            2020 OOO "<a href="">Бабушкины котятки</a>"
+        </div>
+    </div>
+</div>
+</body>
+<script src="range.js"></script>
+</html>
